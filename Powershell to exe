@@ -1,0 +1,7 @@
+install (as admin):
+Install-Module -Name ps2exe
+
+
+
+make (new Powershell after install):
+Invoke-PS2EXE test.ps1 test.unsigniert.exe
