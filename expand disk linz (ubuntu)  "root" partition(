@@ -1,0 +1,29 @@
+sudo -s
+
+
+
+echo 1 | sudo tee /sys/class/block/sdX/device/rescan
+
+partprobe /dev/sdX
+
+lsblk
+(you should see the new storage space at sdX)
+
+parted /dev/sdX
+	> print all
+	> F
+	(if parted does not ask "Warning: Not all of the space available to /dev/sda appears to be used..."  something before  has not worked) 
+	> resizepart ?3?
+	> 100%
+	> quit
+	
+
+pvresize /dev/sd?a3?
+
+lvextend -l +100%FREE /dev/ubuntu-vg/ubuntu-lv
+
+
+lsblk
+(you should see the new storage space at sdX?3?)
+
+
